@@ -1,0 +1,5 @@
+package latentdirichlet
+
+class Trainer {
+
+}
