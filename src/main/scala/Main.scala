@@ -4,8 +4,9 @@ import io.circe.Json
 import io.finch.{Endpoint, Ok, path}
 import io.finch.circe.encodeCirce
 import io.finch.syntax.get
-import utils.json.port
 import latentdirichlet.Classifier
+import utils.config.port
+import utils.RequestLogger
 
 object Main extends App {
   val routes = topics :+: terms
@@ -22,5 +23,5 @@ object Main extends App {
     }
   }
 
-  Await.ready(Http.server.serve(port, routes.toService))
+  Await.ready(Http.server.serve(port, RequestLogger andThen routes.toService))
 }
