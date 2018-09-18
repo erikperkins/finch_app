@@ -1,11 +1,14 @@
 {
   "development": {
-    "port": 8000
+    "port": 8000,
+    "logLevel": "info"
   },
   "production": {
-    "port": 80
+    "port": 80,
+    "logLevel": "error"
   },
   "test": {
-    "port": 8000
+    "port": 8000,
+    "logLevel": "warn"
   }
 }
