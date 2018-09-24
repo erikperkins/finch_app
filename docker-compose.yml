@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  finch:
+    image: erikperkins/finch_app
+    restart: on-failure
+    hostname: finch
+    environment:
+      FINCH_ENV: production
+    ports:
+      - 8000:80
