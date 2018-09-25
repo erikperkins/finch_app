@@ -70,3 +70,5 @@ out/*
 /.lib/
 
 *.log
+data/*
+!data/mongo-json.py
