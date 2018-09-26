@@ -72,3 +72,4 @@ out/*
 *.log
 data/*
 !data/mongo-json.py
+!data/upload.sh

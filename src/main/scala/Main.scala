@@ -5,11 +5,13 @@ import io.finch.{/, Endpoint, Ok, path}
 import io.finch.circe.encodeCirce
 import io.finch.syntax.get
 import latentdirichlet.Classifier
+import org.mongodb.scala.MongoClient
 import utils.config.port
 import utils.RequestLogger
 
 object Main extends App {
   val routes = home :+: topics :+: terms
+  val Mongo: MongoClient = MongoClient("mongodb://storage.datapun.net:27017")
 
   def home: Endpoint[String] = get(/) {
     Ok("Hello, Finch!")
