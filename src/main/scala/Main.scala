@@ -4,13 +4,13 @@ import io.circe.Json
 import io.finch.{/, Endpoint, Ok, path}
 import io.finch.circe.encodeCirce
 import io.finch.syntax.get
-import latentdirichlet.Classifier
+import latentdirichlet.{Classifier, Trainer}
 import org.mongodb.scala.MongoClient
 import utils.config.port
 import utils.RequestLogger
 
 object Main extends App {
-  val routes = home :+: topics :+: terms
+  val routes = home :+: topics :+: terms :+: message
   val Mongo: MongoClient = MongoClient("mongodb://storage.datapun.net:27017")
 
   def home: Endpoint[String] = get(/) {
@@ -26,6 +26,16 @@ object Main extends App {
     slug: String => {
       val classifier = new Classifier()
       Ok(classifier.terms(slug))
+    }
+  }
+
+  def message: Endpoint[Json] = get("message" :: path[String]) {
+    slug: String => {
+      val trainer = new Trainer(Mongo)
+
+      val message = trainer.message(slug)
+
+      Ok(trainer.message(slug))
     }
   }
 

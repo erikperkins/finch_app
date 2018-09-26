@@ -24,6 +24,6 @@ class Classifier {
         |  \"datum\":[\"'$term' is not present in the text corpus\"]
         |}
       """.stripMargin
-    parse(message).right.get
+    parse(message).getOrElse(Json.Null)
   }
 }
