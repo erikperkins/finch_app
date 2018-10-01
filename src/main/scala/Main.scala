@@ -1,4 +1,6 @@
-import com.twitter.finagle.Http
+import com.twitter.finagle.http.filter.Cors
+import com.twitter.finagle.http.{Request, Response}
+import com.twitter.finagle.{Http, Service}
 import com.twitter.util.Await
 import io.circe.Json
 import io.finch.{/, Endpoint, Ok, path}
@@ -6,14 +8,26 @@ import io.finch.circe.encodeCirce
 import io.finch.syntax.get
 import latentdirichlet.{Classifier, Trainer}
 import org.mongodb.scala.MongoClient
-import utils.config.port
+import utils.config.{mongo, port}
 import utils.RequestLogger
 
 object Main extends App {
-  val routes = home :+: topics :+: terms
-  val Mongo: MongoClient = MongoClient("mongodb://storage.datapun.net:27017")
+  val Routes = root :+: topics :+: terms
 
-  def home: Endpoint[String] = get(/) {
+  val Mongo: MongoClient = MongoClient(mongo)
+
+  val Policy: Cors.Policy = Cors.Policy(
+    allowsOrigin = _ => Some("*"),
+    allowsMethods = _ => Some(Seq("GET", "POST")),
+    allowsHeaders = _ => Some(Seq("Accept"))
+  )
+
+  val CORS = new Cors.HttpFilter(Policy)
+
+  val FinchService: Service[Request, Response] =
+    CORS andThen RequestLogger andThen Routes.toService
+
+  def root: Endpoint[String] = get(/) {
     Ok("Hello, Finch!")
   }
 
@@ -29,5 +43,5 @@ object Main extends App {
     }
   }
 
-  Await.ready(Http.server.serve(port, RequestLogger andThen routes.toService))
+  Await.ready(Http.server.serve(port, FinchService))
 }
