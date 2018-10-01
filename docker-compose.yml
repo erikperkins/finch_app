@@ -8,4 +8,4 @@ services:
     environment:
       FINCH_ENV: production
     ports:
-      - 8000:80
+      - 1025:80

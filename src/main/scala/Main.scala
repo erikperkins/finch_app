@@ -10,7 +10,7 @@ import utils.config.port
 import utils.RequestLogger
 
 object Main extends App {
-  val routes = home :+: topics :+: terms :+: message
+  val routes = home :+: topics :+: terms
   val Mongo: MongoClient = MongoClient("mongodb://storage.datapun.net:27017")
 
   def home: Endpoint[String] = get(/) {
@@ -24,17 +24,7 @@ object Main extends App {
 
   def terms: Endpoint[Json] = get("lda" :: path[String]) {
     slug: String => {
-      val classifier = new Classifier()
-      Ok(classifier.terms(slug))
-    }
-  }
-
-  def message: Endpoint[Json] = get("message" :: path[String]) {
-    slug: String => {
       val trainer = new Trainer(Mongo)
-
-      val message = trainer.message(slug)
-
       Ok(trainer.message(slug))
     }
   }
