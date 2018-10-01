@@ -20,3 +20,9 @@ libraryDependencies ++= Seq(
   "edu.stanford.nlp" % "stanford-corenlp" % "3.9.1",
   "edu.stanford.nlp" % "stanford-corenlp" % "3.9.1" classifier "models"
 )
+
+javaOptions ++= Seq(
+  "-Xmx64m"
+)
+
+retrieveManaged := true

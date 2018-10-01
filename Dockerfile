@@ -14,11 +14,9 @@ ENV FINCH_HOME /finch_app
 COPY . /$FINCH_HOME
 WORKDIR $FINCH_HOME
 
+RUN sbt clean
 RUN sbt compile
 RUN sbt package
 
 ENV CLASSPATH $FINCH_HOME/target/streams/compile/dependencyClasspath/\$global/streams/export
-CMD java \
-  -cp target/scala-2.12/finch_app_2.12-0.1.jar:$(cat $CLASSPATH) \
-  --Xms16m --Xmx64m \
-  Main
+CMD java -cp target/scala-2.12/finch_app_2.12-0.1.jar:$(cat $CLASSPATH) Main
