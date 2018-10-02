@@ -20,4 +20,9 @@ package object config {
     Config.hcursor.downField(Environment).get[String]("logLevel")
       .getOrElse("info")
   }
+
+  def mongo: String = {
+    Config.hcursor.downField(Environment).get[String]("mongo")
+      .getOrElse("mongodb://localhost:27017")
+  }
 }

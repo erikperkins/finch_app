@@ -14,6 +14,7 @@ ENV FINCH_HOME /finch_app
 COPY . /$FINCH_HOME
 WORKDIR $FINCH_HOME
 
+RUN sbt clean
 RUN sbt compile
 RUN sbt package
 

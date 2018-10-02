@@ -1,14 +1,17 @@
 {
   "development": {
     "port": 8000,
-    "logLevel": "info"
+    "logLevel": "info",
+    "mongo": "mongodb://storage.datapun.net:27017"
   },
   "production": {
     "port": 80,
-    "logLevel": "error"
+    "logLevel": "error",
+    "mongo": "mongodb://storage.datapun.net:27017"
   },
   "test": {
     "port": 8000,
-    "logLevel": "warn"
+    "logLevel": "warn",
+    "mongo": "mongodb://storage.datapun.net:27017"
   }
 }

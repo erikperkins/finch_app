@@ -70,3 +70,6 @@ out/*
 /.lib/
 
 *.log
+data/*
+!data/mongo-json.py
+!data/upload.sh
