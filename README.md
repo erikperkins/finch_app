@@ -14,5 +14,5 @@ $ java -Xms16m Xmx32m -jar out/artifacts/<app name>_jar/<app name>.jar
 
 ### Starting in Docker
 ```
-$ docker run --rm -d -p 8000:8000 erikperkins/finch_app
+$ docker run --rm -d -p 8000:8000 erikperkins/cloudberry
 ```
