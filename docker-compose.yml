@@ -5,6 +5,7 @@ services:
     image: erikperkins/finch_app
     restart: on-failure
     hostname: finch
+    mem_limit: 268435456
     environment:
       FINCH_ENV: production
     ports:
