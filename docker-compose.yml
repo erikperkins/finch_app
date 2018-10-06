@@ -1,12 +1,10 @@
 version: '2'
-
 services:
-  finch:
-    image: erikperkins/finch_app
+  cloudberry:
+    image: erikperkins/cloudberry
     restart: on-failure
-    hostname: finch
     mem_limit: 268435456
     environment:
-      FINCH_ENV: production
+      CLOUDBERRY_ENV: production
     ports:
       - 1025:80

@@ -5,7 +5,7 @@ import scala.util.Properties.envOrElse
 import utils.json.read
 
 package object config {
-  val Environment: String = envOrElse("FINCH_ENV", "development")
+  val Environment: String = envOrElse("CLOUDBERRY_ENV", "development")
   val ConfigFile: String = "src/main/config/config.json"
   val Config: Json = read(ConfigFile)
 

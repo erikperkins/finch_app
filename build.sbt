@@ -1,4 +1,4 @@
-name := "finch_app"
+name := "cloudberry"
 
 version := "0.1"
 
