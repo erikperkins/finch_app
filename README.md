@@ -1,4 +1,5 @@
-# Cloudberry
+# Cloudberry [![Build Status](https://travis-ci.com/erikperkins/cloudberry.svg?branch=master)](https://travis-ci.com/erikperkins/cloudberry) [![Coverage Status](https://coveralls.io/repos/github/erikperkins/cloudberry/badge.svg?branch=master)](https://coveralls.io/github/erikperkins/cloudberry?branch=master)
+
 ## Build
 
 ### Packaging
