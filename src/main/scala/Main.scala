@@ -6,15 +6,12 @@ import io.circe.Json
 import io.finch.{/, Endpoint, Ok, path}
 import io.finch.circe.encodeCirce
 import io.finch.syntax.get
-import latentdirichlet.{Classifier, Trainer}
-import org.mongodb.scala.MongoClient
-import utils.config.{mongo, port}
+import latentdirichlet.Search
+import utils.config.port
 import utils.RequestLogger
 
 object Main extends App {
   val Routes = root :+: topics :+: terms
-
-  val Mongo: MongoClient = MongoClient(mongo)
 
   val Policy: Cors.Policy = Cors.Policy(
     allowsOrigin = _ => Some("*"),
@@ -32,14 +29,14 @@ object Main extends App {
   }
 
   def topics: Endpoint[Json] = get("lda") {
-    val classifier = new Classifier()
-    Ok(classifier.topics)
+    val search = new Search()
+    Ok(search.topics)
   }
 
   def terms: Endpoint[Json] = get("lda" :: path[String]) {
     slug: String => {
-      val trainer = new Trainer(Mongo)
-      Ok(trainer.message(slug))
+      val search = new Search()
+      Ok(search.terms(slug))
     }
   }
 

@@ -16,13 +16,28 @@ package object config {
     s":$bind"
   }
 
+  def host: String = {
+    Config.hcursor.downField(Environment).get[String]("host")
+      .getOrElse("localhost")
+  }
+
+  def database: String = {
+    Config.hcursor.downField(Environment).get[String]("database")
+      .getOrElse("cloudberry")
+  }
+
   def logLevel: String = {
     Config.hcursor.downField(Environment).get[String]("logLevel")
       .getOrElse("info")
   }
 
-  def mongo: String = {
-    Config.hcursor.downField(Environment).get[String]("mongo")
-      .getOrElse("mongodb://localhost:27017")
+  def model: String = {
+    Config.hcursor.downField(Environment).get[String]("model")
+      .getOrElse("s3a://datapunnet/cloudberry/model")
+  }
+
+  def vocab: String = {
+    Config.hcursor.downField(Environment).get[String]("vocabulary")
+      .getOrElse("s3a://datapunnet/cloudberry/vocabulary")
   }
 }

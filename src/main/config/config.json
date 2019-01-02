@@ -2,16 +2,25 @@
   "development": {
     "port": 8000,
     "logLevel": "info",
-    "mongo": "mongodb://storage.datapun.net:27017"
+    "model": "s3a://datapunnet/cloudberry/model",
+    "vocabulary": "s3a://datapunnet/cloudberry/vocabulary",
+    "host": "storage.datapun.net",
+    "database": "cloudberry"
   },
   "production": {
     "port": 80,
     "logLevel": "error",
-    "mongo": "mongodb://storage.datapun.net:27017"
+    "model": "s3a://datapunnet/cloudberry/model",
+    "vocabulary": "s3a://datapunnet/cloudberry/vocabulary",
+    "host": "storage.datapun.net",
+    "database": "cloudberry"
   },
   "test": {
     "port": 8000,
     "logLevel": "warn",
-    "mongo": "mongodb://storage.datapun.net:27017"
+    "model": "s3a://datapunnet/cloudberry/model",
+    "vocabulary": "s3a://datapunnet/cloudberry/vocabulary",
+    "host": "storage.datapun.net",
+    "database": "cloudberry"
   }
 }
