@@ -3,8 +3,11 @@ services:
   cloudberry:
     image: erikperkins/cloudberry
     restart: on-failure
-    mem_limit: 268435456
     environment:
       CLOUDBERRY_ENV: production
+      CLOUDBERRY_USERNAME: ${CLOUDBERRY_USERNAME}
+      CLOUDBERRY_PASSWORD: ${CLOUDBERRY_PASSWORD}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
     ports:
       - 1025:80
