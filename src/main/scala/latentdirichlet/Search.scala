@@ -6,13 +6,14 @@ import io.circe.syntax._
 import io.circe.parser.parse
 import java.sql.{Connection, DriverManager, ResultSet, Statement, SQLException}
 import scala.collection.mutable.ArrayBuffer
-import utils.config.{database, host}
+import utils.config.database
 import utils.json.read
 
 class Search {
   case class Response(slug: String, datum: Array[String])
 
   val driver = "org.postgresql.Driver"
+  val host = sys.env("POSTGRES_HOST")
   val url = s"jdbc:postgresql://$host:5432/$database"
   val username = sys.env("CLOUDBERRY_USERNAME")
   val password = sys.env("CLOUDBERRY_PASSWORD")
